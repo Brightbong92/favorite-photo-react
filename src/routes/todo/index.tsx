@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TodoPage = () => {
-  return <div>todo detail</div>;
+  return <div>TodoPage</div>;
 };
 
 export default TodoPage;
