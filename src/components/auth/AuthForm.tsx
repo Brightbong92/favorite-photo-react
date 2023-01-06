@@ -1,43 +1,23 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useCreateUserMutation } from '../../apis/auth/AuthApi.mutation';
+import { useForm } from 'react-hook-form';
 
-type FormType = {
-  email: string;
-  password: string;
-};
+interface AuthFormProps {
+  title: string;
+  onSubmit: (data: FormType) => void;
+}
 
-const SignUpForm = () => {
-  const navigate = useNavigate();
+const AuthForm = (props: AuthFormProps) => {
+  const { title, onSubmit } = props;
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<FormType>();
 
-  const { mutate: createUserMutate } = useCreateUserMutation();
-
-  const onSubmit: SubmitHandler<FormType> = (data) => {
-    console.log('signup data', data);
-
-    const { email, password } = data;
-
-    createUserMutate(
-      { email, password },
-      {
-        onSuccess: (res) => {
-          console.log(res);
-        },
-        onError: (err) => {
-          console.log(err);
-        },
-      },
-    );
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>{title}</h1>
       <p>
         <input
           type="text"
@@ -64,15 +44,16 @@ const SignUpForm = () => {
           {...register('password', {
             required: true,
             minLength: 8,
+            // pattern: /[0-9a-z!@#$%^&*()_+=-]{8}/i,
           })}
         />
       </p>
 
       <button type="submit" disabled={isSubmitting}>
-        signup
+        submit
       </button>
     </form>
   );
 };
 
-export default SignUpForm;
+export default AuthForm;

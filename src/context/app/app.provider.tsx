@@ -7,7 +7,7 @@ function withAppProvider(Component: React.ElementType) {
   return function WrappedComponent() {
     return (
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={true} />
+        <ReactQueryDevtools initialIsOpen={false} />
         <Component />
       </QueryClientProvider>
     );

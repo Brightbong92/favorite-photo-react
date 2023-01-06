@@ -1,8 +1,30 @@
 import React from 'react';
-import LoginForm from '../../../components/auth/LoginForm';
+import { SubmitHandler } from 'react-hook-form';
+import { useLoginUserMutation } from '../../../apis/auth/AuthApi.mutation';
+import { useNavigate } from 'react-router-dom';
+import AuthForm from '../../../components/auth/AuthForm';
 
 const LoginPage = () => {
-  return <LoginForm />;
+  const navigate = useNavigate();
+  const { mutate: loginMutate } = useLoginUserMutation();
+
+  const onSubmit: SubmitHandler<FormType> = (data) => {
+    console.log(data);
+    const { email, password } = data;
+    loginMutate(
+      { email, password },
+      {
+        onSuccess: (res) => {
+          navigate(`/`);
+        },
+        onError: (err) => {
+          alert(err);
+        },
+      },
+    );
+  };
+
+  return <AuthForm {...{ onSubmit, title: 'Login' }} />;
 };
 
 export default LoginPage;
