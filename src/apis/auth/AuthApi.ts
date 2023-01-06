@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosInstance } from 'axios';
 import instance from '../_axios/instance';
 import { AuthResponseType, UserInput } from './AuthApi.type';
 
@@ -19,7 +19,6 @@ class AuthApi {
   };
 
   loginUser = async (req: UserInput): Promise<AuthResponseType> => {
-    console.log('req', req);
     const { data } = await instance({
       method: 'POST',
       url: `/users/login`,
