@@ -6,3 +6,8 @@ export type User = {
 };
 
 export type UserInput = Pick<User, 'email' | 'password'>;
+
+export type AuthResponseType = {
+  message: string;
+  token: string;
+};
