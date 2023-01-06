@@ -5,6 +5,7 @@ import HomePage from './routes/home';
 import AuthPage from './routes/auth';
 import TodoDetailPage from './routes/todo/[id]';
 import TodoPage from './routes/todo';
+import withAppProvider from './context/app/app.provider';
 
 function App() {
   return (
@@ -19,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAppProvider(App);
