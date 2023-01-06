@@ -24,9 +24,11 @@ const HomePage = () => {
         <a href="/auth/signup">signup</a>
       </p>
 
-      <p>
-        <a href="/todo">todo</a>
-      </p>
+      {me && (
+        <p>
+          <a href="/todo">todo</a>
+        </p>
+      )}
     </div>
   );
 };

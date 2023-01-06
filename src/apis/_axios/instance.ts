@@ -9,18 +9,25 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  async (req) => {
-    const updatedReq = { ...req };
-    return updatedReq;
+  async (config) => {
+    const token = localStorage.getItem('token');
+    const updatedConfig = { ...config };
+    if (token) {
+      updatedConfig.headers = {
+        Authorization: `Bearer ${token}`,
+      };
+    }
+    console.log('interceptors req', updatedConfig);
+    return updatedConfig;
   },
   async (error) => {},
 );
 
 instance.interceptors.response.use(
-  async (res) => {
-    const updatedRes = { ...res };
-    console.log('interceptors res', res);
-    return updatedRes;
+  async (config) => {
+    const updatedConfig = { ...config };
+    console.log('interceptors res', updatedConfig);
+    return updatedConfig;
   },
   async (error) => {},
 );

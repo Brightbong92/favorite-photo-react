@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import instance from '../_axios/instance';
-import { AuthResponseType, UserInput } from './AuthApi.type';
+import { AuthResponseType, UserRequestType } from './AuthApi.type';
 
 class AuthApi {
   axios: AxiosInstance = instance;
@@ -9,7 +9,7 @@ class AuthApi {
     if (axios) this.axios = axios;
   }
 
-  createUser = async (req: UserInput): Promise<AuthResponseType> => {
+  createUser = async (req: UserRequestType): Promise<AuthResponseType> => {
     const { data } = await instance({
       method: 'POST',
       url: `/users/create`,
@@ -18,7 +18,7 @@ class AuthApi {
     return data;
   };
 
-  loginUser = async (req: UserInput): Promise<AuthResponseType> => {
+  loginUser = async (req: UserRequestType): Promise<AuthResponseType> => {
     const { data } = await instance({
       method: 'POST',
       url: `/users/login`,

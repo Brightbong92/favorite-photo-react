@@ -5,7 +5,7 @@ export type User = {
   createdAt: string;
 };
 
-export type UserInput = Pick<User, 'email' | 'password'>;
+export type UserRequestType = Pick<User, 'email' | 'password'>;
 
 export type AuthResponseType = {
   message: string;
