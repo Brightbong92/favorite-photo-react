@@ -1,17 +1,21 @@
 import React from 'react';
 
-import './App.css';
-import { Routes } from 'react-router-dom';
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './routes/home';
-import LoginPage from './routes/login';
+import AuthPage from './routes/auth';
+import TodosPage from './routes/todos';
+import TodoPage from './routes/todo';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/todo" element={<TodosPage />} />
+        <Route path="/todo/:id" element={<TodoPage />} />
+      </Routes>
+    </Router>
   );
 }
 
