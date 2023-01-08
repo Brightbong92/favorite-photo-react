@@ -9,7 +9,7 @@ const SignUpPage = () => {
 
   const { mutate: createUserMutate } = useCreateUserMutation();
 
-  const onSubmit: SubmitHandler<FormType> = (data) => {
+  const onSubmit: SubmitHandler<AuthFormType> = (data) => {
     const { email, password } = data;
 
     createUserMutate(

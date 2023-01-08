@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import todoApi from '../../apis/todo/TodoApi';
 import TodoItem from '../../components/todo/TodoItem';
 import TodoList from '../../components/todo/TodoList';
-import { useTodosQuery } from '../../apis/todo/TodoApi.query';
 
 const TodoPage = () => {
-  const { data } = useTodosQuery();
+  const { data: todos } = useQuery('todos', todoApi.getTodos, {
+    refetchOnWindowFocus: false,
+  });
 
-  console.log('data', data);
+  const [mode, setMode] = useState<'add' | 'update'>('add');
+  const [content, setContent] = useState<string>('');
 
   return (
     <>
-      <TodoList />
+      <TodoList {...{ mode, setMode, content, setContent }} />
       <hr />
-      <TodoItem />
+      <TodoItem {...{ content, setContent }} />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 interface AuthFormProps {
   title: string;
-  onSubmit: (data: FormType) => void;
+  onSubmit: (data: AuthFormType) => void;
 }
 
 const AuthForm = (props: AuthFormProps) => {
@@ -13,7 +13,7 @@ const AuthForm = (props: AuthFormProps) => {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<FormType>();
+  } = useForm<AuthFormType>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

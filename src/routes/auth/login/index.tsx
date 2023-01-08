@@ -9,7 +9,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { mutate: loginMutate } = useLoginUserMutation();
 
-  const onSubmit: SubmitHandler<FormType> = (data) => {
+  const onSubmit: SubmitHandler<AuthFormType> = (data) => {
     const { email, password } = data;
     loginMutate(
       { email, password },

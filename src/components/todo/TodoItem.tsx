@@ -1,10 +1,17 @@
-import React from 'react';
-import { useTodoByIdQuery } from '../../apis/todo/TodoApi.query';
+import React, { Dispatch, SetStateAction } from 'react';
 
-const TodoItem = () => {
-  const { data } = useTodoByIdQuery();
-
-  return <div>TodoItem</div>;
+interface TodoItemProps {
+  content: string;
+  setContent: Dispatch<SetStateAction<string>>;
+}
+const TodoItem = (props: TodoItemProps) => {
+  const { content, setContent } = props;
+  return (
+    <div>
+      <h1>Todo Item</h1>
+      <div>{content}</div>
+    </div>
+  );
 };
 
 export default TodoItem;
