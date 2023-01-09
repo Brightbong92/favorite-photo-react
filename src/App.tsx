@@ -15,6 +15,7 @@ function App() {
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/signUp" element={<SignUpPage />} />
         <Route path="/todo" element={<TodoPage />} />
+        <Route path="/todo/:id" element={<TodoPage />} />
       </Routes>
     </Router>
   );

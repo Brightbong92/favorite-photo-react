@@ -6,24 +6,21 @@ import {
   useUpdateTodoMutation,
 } from '../../apis/todo/TodoApi.mutation';
 import { useQuery, useQueryClient } from 'react-query';
+import { Link } from 'react-router-dom';
 
 interface TodoListProps {
+  id: string;
   mode: 'add' | 'update';
-  content: string;
+  setId: Dispatch<SetStateAction<string>>;
   setMode: Dispatch<SetStateAction<'add' | 'update'>>;
-  setContent: Dispatch<SetStateAction<string>>;
 }
 
-const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
+const TodoList = ({ mode, id, setMode, setId }: TodoListProps) => {
   const queryClient = useQueryClient();
   const { register, getValues, reset, setValue } =
     useForm<Pick<TodoType, 'title' | 'content'>>();
 
-  const { data: todos } = useQuery('todos', todoApi.getTodos, {
-    refetchOnWindowFocus: false,
-  });
-
-  const [id, setId] = useState<string>('');
+  const { data: todos } = useQuery('todos', todoApi.getTodos);
 
   const { mutate: createTodoMutate } = useCreateTodoMutateion();
   const { mutate: updateTodoMutate } = useUpdateTodoMutation();
@@ -40,7 +37,7 @@ const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
             queryClient.invalidateQueries('todos');
             setValue('title', '');
             setValue('content', '');
-            setContent(res?.data?.content);
+            setId(res?.data?.id);
           },
           onError: () => {
             alert('add fail');
@@ -59,7 +56,7 @@ const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
             queryClient.invalidateQueries('todos');
             setValue('title', res?.data?.title);
             setValue('content', res?.data?.content);
-            setContent(res?.data?.content);
+            setId(res?.data?.id);
           },
           onError: () => {
             alert('fail update');
@@ -70,26 +67,23 @@ const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
   };
 
   const handleTodoItem = (_todo: TodoType) => {
-    // if (mode === 'update') {
+    setId(_todo.id);
     setValue('title', _todo.title);
     setValue('content', _todo.content);
-    // }
-    setContent(_todo.content);
-    setId(_todo.id);
   };
 
   const onClickUpdateBtn = () => {
     if (mode === 'add') {
-      if (content === '') return alert('please select content');
+      if (id === '') return alert('please select content');
       setMode('update');
     }
   };
 
   const onClickUpdateCancelBtn = () => {
+    setId('');
     setMode('add');
     setValue('title', '');
     setValue('content', '');
-    setContent('');
   };
 
   return (
@@ -127,10 +121,6 @@ const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
             <button type="button" onClick={onClickUpdateCancelBtn}>
               update cancel
             </button>
-
-            {/* <button type="button" onClick={onSubmit}>
-              update submit
-            </button> */}
           </>
         )}
       </div>
@@ -141,10 +131,10 @@ const TodoList = ({ mode, content, setMode, setContent }: TodoListProps) => {
             return (
               <li
                 key={_todo?.id}
-                style={{ cursor: 'pointer' }}
                 onClick={() => handleTodoItem(_todo)}
+                style={{ cursor: 'pointer' }}
               >
-                {_todo?.title}
+                {_todo.title}
               </li>
             );
           })}

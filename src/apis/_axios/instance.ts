@@ -17,7 +17,7 @@ instance.interceptors.request.use(
         Authorization: `Bearer ${token}`,
       };
     }
-    console.log('interceptors req', updatedConfig);
+
     return updatedConfig;
   },
   async (error) => {},
@@ -26,7 +26,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   async (config) => {
     const updatedConfig = { ...config };
-    console.log('interceptors res', updatedConfig);
+
     return updatedConfig;
   },
   async (error) => {},

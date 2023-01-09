@@ -20,12 +20,10 @@ class TodoApi {
     return data;
   };
 
-  getTodoById = async (
-    req: Pick<TodoType, 'id'>,
-  ): Promise<TodoResponseType> => {
+  getTodoById = async (id: string): Promise<TodoResponseType> => {
     const { data } = await instance({
       method: 'GET',
-      url: `/todos/${req?.id}`,
+      url: `/todos/${id}`,
     });
     return data;
   };
