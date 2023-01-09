@@ -10,7 +10,7 @@ const TodoItem = (props: TodoItemProps) => {
   const { id, setId } = props;
 
   const { data: todoData } = useQuery(['todoById', id], () =>
-    todoApi.getTodoById(id),
+    todoApi.getTodoById({ id }),
   );
 
   return (
