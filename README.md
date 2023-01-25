@@ -1,1 +1,1 @@
-# newjeans-polls
+# favorite-photo-polls
