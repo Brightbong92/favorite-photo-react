@@ -6,6 +6,7 @@ import LoginPage from './routes/auth/login';
 import TodoPage from './routes/todo';
 import withAppProvider from './context/app/app.provider';
 import SignUpPage from './routes/auth/signup';
+import PollsPage from './routes/polls';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/auth/signUp" element={<SignUpPage />} />
         <Route path="/todo" element={<TodoPage />} />
         <Route path="/todo/:id" element={<TodoPage />} />
+        <Route path="/polls" element={<PollsPage />} />
       </Routes>
     </Router>
   );
