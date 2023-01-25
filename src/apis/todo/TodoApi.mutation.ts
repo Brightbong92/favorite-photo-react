@@ -2,9 +2,9 @@ import todoApi from './TodoApi';
 import { useMutation } from 'react-query';
 
 const KEYS = {
-  createTodo: 'createTodo' as const,
-  updateTodo: 'updateTodo' as const,
-  deleteTodo: 'deleteTodo' as const,
+  createTodo: ['createTodo'] as const,
+  updateTodo: ['updateTodo'] as const,
+  deleteTodo: ['deleteTodo'] as const,
 };
 
 export const useCreateTodoMutateion = () => {

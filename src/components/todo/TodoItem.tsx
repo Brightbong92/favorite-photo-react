@@ -1,17 +1,15 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { useQuery } from 'react-query';
-import todoApi from '../../apis/todo/TodoApi';
+
+import { useGetTodoByIdQuery } from '../../apis/todo/TodoApi.query';
 
 interface TodoItemProps {
   id: string;
   setId: Dispatch<SetStateAction<string>>;
 }
 const TodoItem = (props: TodoItemProps) => {
-  const { id, setId } = props;
+  const { id } = props;
 
-  const { data: todoData } = useQuery(['todoById', id], () =>
-    todoApi.getTodoById({ id }),
-  );
+  const { data: todoData } = useGetTodoByIdQuery(id);
 
   return (
     <div>

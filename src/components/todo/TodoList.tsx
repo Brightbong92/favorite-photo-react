@@ -6,7 +6,6 @@ import {
   useUpdateTodoMutation,
 } from '../../apis/todo/TodoApi.mutation';
 import { useQuery, useQueryClient } from 'react-query';
-import { Link } from 'react-router-dom';
 
 interface TodoListProps {
   id: string;
