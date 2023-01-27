@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import ChoiceForm from '../../components/polls/ChoiceForm';
+import HaerinPolls from '../../components/polls/HaerinPolls';
 import { PHOTOS, PhotoType } from '../../constants/photo';
 
 const PollsPage = () => {
   const [round, setRound] = useState<number>(16);
   const [count, setCount] = useState<number>(1);
-
   const [photos, setPhotos] = useState<PhotoType[]>([]);
 
   const roundTitle = useMemo(() => {
@@ -25,8 +25,9 @@ const PollsPage = () => {
 
   return (
     <Wrapper>
-      <Header1>{roundTitle}</Header1>
-      <ChoiceForm {...{ round, setRound, count, setCount, photos }} />
+      <HaerinPolls />
+      {/* <Header1>{roundTitle}</Header1> */}
+      {/* <ChoiceForm {...{ round, setRound, count, setCount, photos }} /> */}
     </Wrapper>
   );
 };

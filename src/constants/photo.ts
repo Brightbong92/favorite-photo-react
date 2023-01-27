@@ -18,17 +18,17 @@ export const HAERINS: PhotoType[] = [
   {
     id: 2,
     name: '해린',
-    img: '/images/haerin3.jpeg',
+    img: '/images/haerin3.png',
   },
   {
     id: 3,
     name: '해린',
-    img: '/images/haerin4.jpeg',
+    img: '/images/haerin4.png',
   },
   {
     id: 4,
     name: '해린',
-    img: '/images/haerin5.jpeg',
+    img: '/images/haerin5.png',
   },
   {
     id: 5,
