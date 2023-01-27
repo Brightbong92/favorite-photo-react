@@ -4,6 +4,49 @@ export type PhotoType = {
   img: string;
 };
 
+export const HAERINS: PhotoType[] = [
+  {
+    id: 0,
+    name: '해린',
+    img: '/images/haerin1.jpeg',
+  },
+  {
+    id: 1,
+    name: '해린',
+    img: '/images/haerin2.jpeg',
+  },
+  {
+    id: 2,
+    name: '해린',
+    img: '/images/haerin3.jpeg',
+  },
+  {
+    id: 3,
+    name: '해린',
+    img: '/images/haerin4.jpeg',
+  },
+  {
+    id: 4,
+    name: '해린',
+    img: '/images/haerin5.jpeg',
+  },
+  {
+    id: 5,
+    name: '해린',
+    img: '/images/haerin6.jpeg',
+  },
+  {
+    id: 6,
+    name: '해린',
+    img: '/images/haerin7.jpeg',
+  },
+  {
+    id: 7,
+    name: '해린',
+    img: '/images/haerin8.jpeg',
+  },
+];
+
 export const PHOTOS: PhotoType[] = [
   {
     id: 0,
