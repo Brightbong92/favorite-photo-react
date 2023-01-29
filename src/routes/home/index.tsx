@@ -29,6 +29,10 @@ const HomePage = () => {
           <a href="/todo">todo</a>
         </p>
       )}
+
+      <p>
+        <a href="/polls">polls</a>
+      </p>
     </div>
   );
 };

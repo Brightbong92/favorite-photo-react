@@ -1,37 +1,49 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled, { keyframes } from 'styled-components';
-import { HAERINS, PhotoType } from '../../constants/photo';
+import { PhotoType, PHOTOS } from '../../constants/photo';
 
 interface FormType {
   name: string;
 }
 
-const HaerinPolls = () => {
+const YeonkyungPolls = () => {
   const {
     register,
     formState: { isValid },
   } = useFormContext<FormType>();
 
+  const [photos, setPhotos] = useState<PhotoType[]>([]);
   const [step, setStep] = useState(0);
-  const [photos, setPhotos] = useState<PhotoType[]>(HAERINS);
   const [count, setCount] = useState(0);
   const [round2, setRound2] = useState<PhotoType[]>([]);
+  const [round3, setRound3] = useState<PhotoType[]>([]);
   const [finalRound, setFinalRound] = useState<PhotoType[]>([]);
   const [roundCount, setRoundCount] = useState(0);
 
   const onClickItem = (value: PhotoType) => {
     setRoundCount(roundCount + 1);
-    if (roundCount < 3) {
+    if (roundCount < 7) {
       setRound2((prev) => [...prev, value]);
       setCount(count + 2);
-    } else if (roundCount === 3) {
+    } else if (roundCount === 7) {
       setPhotos([...round2, value]);
       setCount(0);
-    } else if (roundCount > 3 && roundCount < 5) {
+    } else if (roundCount > 7 && roundCount < 11) {
+      setRound3((prev) => [...prev, value]);
+      setCount(count + 2);
+    } else if (roundCount === 11) {
+      setPhotos([...round3, value]);
+      setCount(0);
+    } else if (roundCount > 11 && roundCount < 13) {
       setFinalRound((prev) => [...prev, value]);
       setCount(count + 2);
-    } else if (roundCount === 5) {
+    } else if (roundCount === 13) {
       setPhotos([...finalRound, value]);
       setCount(0);
     } else {
@@ -41,12 +53,7 @@ const HaerinPolls = () => {
   };
 
   useLayoutEffect(() => {
-    const shuffleArr = HAERINS.sort(() => Math.random() - 0.5);
-    setPhotos(shuffleArr);
-  }, []);
-
-  useEffect(() => {
-    document.getElementById('input')?.focus();
+    setPhotos(PHOTOS.sort(() => Math.random() - 0.5));
   }, []);
 
   return (
@@ -74,11 +81,13 @@ const HaerinPolls = () => {
       {step === 1 && (
         <>
           roundCount: {roundCount}
+          <br />
+          count: {count}
           <ListWrap>
             {photos.slice(count, count + 2).map((ele) => {
               return (
                 <ListItem key={ele.id}>
-                  <ImgItem src={ele.img} onClick={() => onClickItem(ele)} />
+                  <CustomImg src={ele.img} onClick={() => onClickItem(ele)} />
                 </ListItem>
               );
             })}
@@ -89,7 +98,23 @@ const HaerinPolls = () => {
   );
 };
 
-export default HaerinPolls;
+export const CustomImg = styled.img`
+  cursor: pointer;
+  border-radius: 5px;
+
+  width: 300px;
+  height: 400px;
+
+  :hover {
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
 const Input = styled.input`
   width: 150px;
@@ -122,3 +147,5 @@ const ListWrap = styled.div`
 const ListItem = styled.span`
   animation: ${FadeIn} 1s;
 `;
+
+export default YeonkyungPolls;

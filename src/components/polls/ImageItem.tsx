@@ -23,7 +23,6 @@ export default memo(ImageItem);
 export const CustomImg = styled.img`
   cursor: pointer;
   border-radius: 5px;
-  content-visibility: auto;
 
   :hover {
     transform: scale(1.01);
